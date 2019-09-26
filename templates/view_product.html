@@ -1,0 +1,24 @@
+{% extends "sidebar_nav.html" %}
+
+{% block content %}
+
+<div class="category-header purple fjalla">
+	<h2>{{singleproduct.category.name}} - {{singleproduct.name}}</h2>
+</div>
+
+<div class="white spacer"></div>
+
+<label>Description:</label><label class="description">{{singleproduct.description}}</label><br>
+<label>Price:</label><label>{{singleproduct.price}}</label><br>
+<label>Category:</label><label>{{singleproduct.category.name}}</label><br>
+
+<div class="white spacer"></div>
+
+{% if singleproduct.user.id == user.id %}
+	<div class="button green-light mini float-left gutter-top" onclick="location.href='{{url_for('editProduct', category_id = singleproduct.category_id, product_id = singleproduct.id)}}';">Edit</div>
+	<div class="button red mini float-left gutter-left gutter-top" onclick="location.href='{{url_for('deleteProduct', category_id = singleproduct.category_id, product_id = singleproduct.id)}}';">Delete</div>
+{% endif %}
+
+<div class="button-cancel mini float-left" onclick="location.href='{{url_for('productListing', category_id=singleproduct.category_id)}}';">Cancel</div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "sidebar_nav.html" %}
+
+{% block content %}
+
+<div class="form-header purple fjalla">
+	<h2>Edit Product</h2>
+</div>
+
+<div class="white spacer"></div>
+
+<form action="{{ url_for('editProduct', category_id=editedProduct.category_id, product_id=editedProduct.id) }}" method='POST'>
+	<input name="csrf_token" type=hidden value="{{ csrf_token }}">
+
+	<p>Name:</p>
+	<input type='text' size='30' name='name' value="{{editedProduct.name}}">
+	<br>
+	<div class="white spacer"></div>
+
+	<p>Description:</p>
+	<input type='text' size='30' name='description' value="{{editedProduct.description}}">
+	<br>
+	<div class="white spacer"></div>
+
+	<p>Price:</p>
+	<input type='text' size='30' name='price' value="{{editedProduct.price}}">
+	<br>
+	<div class="white spacer"></div>
+
+	<p>Category:</p>
+	<input type='text' size='30' name='category' value="{{editedProduct.category.name}}">
+	<br>
+	<div class="white spacer"></div>
+
+	<input class="green mini float-left" type='submit' value='Save'>
+	<div class="button-cancel mini float-left" onclick="location.href='{{url_for('productListing', category_id=editedProduct.category_id)}}';">Cancel</div>
+</form>
+
+{% endblock %}

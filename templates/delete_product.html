@@ -1,0 +1,21 @@
+{% extends "sidebar_nav.html" %}
+
+{% block content %}
+
+<div class="form-header purple fjalla">
+	<h2>Delete Product</h2>
+</div>
+
+<div class="white spacer"></div>
+
+<form action="{{ url_for('deleteProduct', category_id=deletedProduct.category.id, product_id=deletedProduct.id) }}" method='POST'>
+	<input name="csrf_token" type=hidden value="{{ csrf_token }}">
+
+	<div class="white spacer"></div>
+	<p>Are you sure you want to delete {{deletedProduct.name}} ?</p>
+	<div class="white spacer"></div>
+	<input class="green mini float-left" type='submit' value='Yes'>
+	<div class="button-cancel mini float-left" onclick="location.href='{{url_for('productListing', category_id=category_id)}}';">Cancel</div>
+</form>
+
+{% endblock %}

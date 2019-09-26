@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block sidebar %}
+
+	<div class="category-header purple fjalla">
+		<h2>Categories</h2>
+	</div>
+
+	{% if user is not none %}
+		<div class="button purple" onclick="location.href='{{url_for('addCategory')}}';">
+	    	New Category
+	    </div>
+	{% endif %}
+
+    <div class="white spacer"></div>
+
+	{% for category in categories %}
+		<div class="button orange" onclick="location.href='{{url_for('productListing', category_id = category.id)}}';">
+			{{category.name}}
+		</div>
+
+		<div class="white spacer"></div>
+
+		{% if category.user.id == user.id %}
+			<div class="button green-light mini float-left" onclick="location.href='{{url_for('editCategory', category_id = category.id)}}';">Edit
+			</div>
+			<div class="button red mini float-left gutter-left" onclick="location.href='{{url_for('deleteCategory', category_id = category.id)}}';">Delete
+			</div>
+
+			<div class="float-none"></div>
+			<div class="white spacer"></div>
+			<div class="white spacer"></div>
+		{% endif %}
+	{% endfor %}
+
+{% endblock %}
+
+{% block content %}
+{% endblock %}
